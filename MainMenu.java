@@ -15,13 +15,20 @@ public class MainMenu extends JFrame
     JButton q;
     JPanel p;
     Scanner s;
+    boolean newGame = false;
+    boolean resumeGame = false;
+    boolean leaderboard = false;
+
+    Color blue =  new Color(137, 160, 196);
+    Color yellow = new Color(237, 186, 57);
+    Color green = new Color(106, 153, 84);
 
     MainMenu()
     {
         setSize(700, 600);
-        Color green = new Color(106, 153, 84);
         setBackground(green);
-        addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter()
+      {
             @Override
             public void windowClosing(WindowEvent e)
             {
@@ -35,6 +42,12 @@ public class MainMenu extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                newGame = true;
+                repaint();
+                b.setVisible(false);
+                r.setVisible(false);
+                q.setVisible(false);
+                //setBackground(Color.BLACK);
             }
         });
         r = new JButton("Resume Game");
@@ -42,6 +55,11 @@ public class MainMenu extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                resumeGame = true;
+                repaint();
+                b.setVisible(false);
+                r.setVisible(false);
+                q.setVisible(false);
             }
         });
         q = new JButton("Leaderboard");
@@ -49,6 +67,11 @@ public class MainMenu extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                leaderboard = true;
+                repaint();
+                b.setVisible(false);
+                r.setVisible(false);
+                q.setVisible(false);
             }
         });
 
@@ -72,28 +95,34 @@ public class MainMenu extends JFrame
     public void paint(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
-        Color blue =  new Color(137, 160, 196);
-        Color yellow = new Color(237, 186, 57);
-        //sky
-        g2.setColor(blue);
-        g2.fillRect(0,0,700,410);
-        g2.setColor(yellow);
-        g2.fillOval(-40,-20,120,120);
-        //title
-        g2.setColor(Color.WHITE);
-        g2.setFont(f); // Set the font to f
-        g2.drawString("Climate Change", 175, 120);
-            /*g2.setFont(text);
-            g2.drawRoundRect(190, 180, 300, 70, 30, 30);
-            g2.drawString("Start New Game", 265, 205);
-            g2.drawString("Press 'g'", 295, 235);
-            g2.drawRoundRect(190, 300, 300, 70, 30, 30);
-            g2.drawString("Resume Game", 270, 325);
-            g2.drawString("Press 'r'", 290, 355);
-            g2.drawRoundRect(190, 420, 300, 70, 30, 30);
-            g2.drawString("Leaderboard", 270, 445);
-            g2.drawString("Press 'l'", 290, 475);*/
-}
+       if(newGame)
+       {
+           g2.setColor(green);
+           g2.fillRect(0,0,700,600);
+       }
+       else if(resumeGame)
+       {
+           g2.setColor(blue);
+           g2.fillRect(0,0,700,600);
+       }
+       else if(leaderboard)
+       {
+           g2.setColor(yellow);
+           g2.fillRect(0,0,700,600);
+       }
+       else
+       {
+           //sky
+           g2.setColor(blue);
+           g2.fillRect(0,0,700,410);
+           g2.setColor(yellow);
+           g2.fillOval(-40,-20,120,120);
+           //title
+           g2.setColor(Color.WHITE);
+           g2.setFont(f); // Set the font to f
+           g2.drawString("Climate Change", 175, 120);
+       }
+    }
 
     public static void main (String[] args){
         try {
