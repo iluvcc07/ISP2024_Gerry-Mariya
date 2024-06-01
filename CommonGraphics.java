@@ -65,3 +65,4 @@ public class CommonGraphics extends Canvas{
         g.drawLine(x, y+height / 2, x + width, y+height / 2);
     }
 }
+
